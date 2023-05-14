@@ -2,7 +2,7 @@
 
 KIND_NODE_IMAGE_VERSION=kindest/node:1.27.1@sha256:4992b70e56a3de9c917adfb4fefe24ca2ee6fb1b8f3e31257e9ae8836ab8a271
 KUBERNETES_DASHBOARD_VERSION=2.3.1
-CLUSTER_NAME=jeremy
+CLUSTER_NAME=kind
 reg_name='kind-registry'
 reg_port='5001'
 DASHBOARD_URL=https://localhost:8080
@@ -31,10 +31,7 @@ fi
 info "Docker and Kind are both available"
 
 install_kind(){
-    # Install Kind
-    curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
-    chmod +x ./kind
-    sudo mv ./kind /usr/local/bin/kind
+#    curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
 }
 
 setup_registry(){
@@ -141,10 +138,6 @@ subjects:
   name: admin-user
   namespace: kubernetes-dashboard
 EOF
-
-# Print the dashboard token to the console
-# kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}') | grep '^token:' | awk '{print $2}'
-
 }
 
 
